@@ -79,7 +79,7 @@ add_to_rc(){
         echo "nohup whatareyoudoing >/dev/null 2>&1 &" >> "$home/${rc}"
         echo ""
         echo "${YELLOW}Reload your shell after install complete"
-        echo "Alternativey source your shell config  with \`source $home/${rc}\`${NC}"
+        echo "Alternatively source your shell config  with \`source $home/${rc}\`${NC}"
     else
         echo "${YELLOW}$home/${rc} already contains 'whatareyoudoing'${NC}"
     fi

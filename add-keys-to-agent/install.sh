@@ -62,7 +62,7 @@ add_to_rc(){
         echo "add-keys.sh" >> "$home/${rc}"
         echo ""
         echo "${YELLOW}Reload your shell after install complete"
-        echo "Alternativey source your shell config  with \`source $home/${rc}\`${NC}"
+        echo "Alternatively source your shell config  with \`source $home/${rc}\`${NC}"
     else
         echo "${YELLOW}$home/${rc} already contains 'add-keys.sh'${NC}"
     fi
@@ -83,6 +83,6 @@ fi
 echo ""
 echo "${GREEN}add-keys has been installed successfully${NC}"
 echo "${GREEN}Blacklist keyfiles from being automatically added to your agent${NC}"
-echo "${GREEN}by adding line seperated filepaths to $home/.add-keys/blacklist${NC}"
+echo "${GREEN}by adding line separated filepaths to $home/.add-keys/blacklist${NC}"
 
 

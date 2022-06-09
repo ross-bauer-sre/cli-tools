@@ -19,7 +19,7 @@ run_exit() {
     process_id=$(/bin/ps -fu "$USER"| grep "/bin/sh /usr/local/bin/whatareyoudoing" | grep -v "grep" | awk '{print $2}')
     rm -rf "$lockfile"
     echo "Quitting WAYD"
-    kill -9 ${process_id}
+    kill -9 "${process_id}"
     exit 0
 }
 
@@ -29,7 +29,7 @@ if [ "$#" -gt 1 ]; then
 fi
 
 # Handle help/malformed args
-if [ "$#" -eq 1 ] && [ $1 != "exit" ]; then
+if [ "$#" -eq 1 ] && [ "$1" != "exit" ]; then
     usage
 fi
 
@@ -127,7 +127,7 @@ ask_wayd() {
             lock=''
         fi
         
-        # Test if last popup was 'cancled'
+        # Test if last popup was 'canceled'
         test_cancel "$wayd"
 
         # If WAYD entry not set, default it
@@ -147,7 +147,7 @@ ask_wayd() {
 # Ask the first time
 ask_wayd
 
-# Loop contines till canceled
+# Loop continues till canceled
 while true; do
     # Sleep for set frequency AFTER previous WAYD timesheet entry closed
     sleep "$frequency_secs"
