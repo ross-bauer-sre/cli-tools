@@ -1,10 +1,15 @@
 #!/bin/sh
+blacklist="/home/$(logname)/.add-keys/blacklist"
 
-keys_in_folder=$(ls ~/.ssh/id* | grep -v '\.pub$' | grep -v 'ross_ops' | tr '\n' ' ' | xargs)
+if [ ! -s "$blacklist" ]
+then
+    touch "$blacklist"
+fi
+
+keys_in_folder=$(ls ~/.ssh/id* | grep -v '\.pub$' | grep -vFxf "$blacklist" | tr '\n' ' ' | xargs)
 
 num_keys_in_agent=$(ssh-add -l | wc -l)
-
-num_keys_in_folder=$(ls ~/.ssh/id* | grep -v '\.pub$' | grep -v 'ross_ops' | wc -l)
+num_keys_in_folder=$(echo "$keys_in_folder" | wc -w)
 
 if [ "$num_keys_in_agent" -ne "$num_keys_in_folder" ]
 then
@@ -19,7 +24,7 @@ then
 
     add_exit=$?
 
-    combined_exits=$(($delete_exit+$add_exit))
+    combined_exits=$((delete_exit+add_exit))
 
     if [ "$combined_exits" -eq 0 ]
     then
